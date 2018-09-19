@@ -1,0 +1,48 @@
+
+<html>
+	<head>
+		<script src="jquery-3.3.1.js"></script>
+	</head>
+	<body>	
+		<table id="example" class="display" style="width:100%" border="1">
+			<thead>
+				<tr>
+				<th>Time</th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thursday</th>
+				<th>Friday</th>
+				</tr>
+			</thead>
+		</table>
+	</body>
+	<script>
+		$( document ).ready(function() {
+			console.log( "ready!" );
+			$.ajax({
+				url: "timetable.txt",
+				dataType : "json",
+				success: function(result){
+					console.log( "sucess!" );
+					console.log(result);
+					$(result.data).each(function(index,value){
+						console.log(value.Time)
+						
+						var record = "<tr>"+
+									 "<td>"+value.Time+"</td>"+
+									 "<td>"+value.Monday+"</td>"+
+									 "<td>"+value.Tuesday+"</td>"+
+									 "<td>"+value.Wednesday+"</td>"+
+									 "<td>"+value.Thursday+"</td>"+
+									 "<td>"+value.Friday+"</td>"+
+									 "</tr>";
+									 $("table").append(record);
+									 
+									 
+					})
+				}
+			});
+		});
+	</script>
+</html>	
